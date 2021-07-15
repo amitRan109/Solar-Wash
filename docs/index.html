@@ -2,39 +2,38 @@
 <html>
   <head>
     <title>Solar Wash</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+    <script type="text/javascript" src="prices.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    
   </head>
   <meta charset="utf-8">
   <body dir="rtl">
     <div class="testbox">
       <form action="/">
         <div class="banner">
-          <h1>תמחור פרויקט Solar Wash</h1>
+          <h1>כתב כמויות SOLAR WASH</h1>
         </div>
-        <h4> פרטי הלקוח</h4>
+        <h3 class="header"> פרטי הלקוח</h3>
         <div class="item">
-          <p>שם וכתובת</p>
-          <div class="name-item">
-            <input type="text" name="Name" placeholder="Name" />
-            <input type="text" name="Address" placeholder="Address" />
-          </div>
+          <input type="text" name="שם" placeholder="שם הלקוח" />
+          <input type="text" name="כתובת" placeholder="כתובת" />
         </div>
         <div class="item">
           <p>תאריך חתימת חוזה</p>
-          <input type="date" name="date" required/>
+          <input type="date" name="date"/>
           <i class="fas fa-calendar-alt"></i>
         </div>
-        <h4> מוצרים</h4>
+        <h3 class="header"> מוצרים</h3>
+        <p class="header">מספר פאנלים</p>
         <div class="item">
-            <p>מספר פאנלים</p>
-            <input type="number" name="name"/>
+            <input type="number" id="panelsNumber"/>
         </div>
-        <div class="question" >
-          <p>סוג חומר טיפול במים</p>
+        <p class="header">טכנולוגיית טיפול במים</p>
+        <div class="question" id= "waterTreat">
           <div class="question-answer">
             <input type="radio" value="none" id="radio_1" name="driving"/>
             <label for="radio_1" class="radio"><span>מרכך</span></label>
@@ -42,47 +41,89 @@
             <label for="radio_2" class="radio"><span>סיליפוס</span></label>
           </div>
         </div>
+        <p class="header">מספר ברזים</p>
         <div class="item">
-            <p>מספר ברזים</p>
-            <input type="number" name="name"/>
+            <input type="number" id="faucetsNumber"/>
+            <!-- <div>
+              <select>
+                <option value="" selected>צורה</option>
+                <option value="1">T</option>
+                <option value="2">זווית</option>
+                <option value="3">ישר</option>
+              </select>
+            </div>
+            <div>
+              <select>
+                <option value="" selected>צורה</option>
+                <option value="1">T</option>
+                <option value="2">זווית</option>
+                <option value="3">ישר</option>
+              </select>
+            </div> -->
         </div>
+        <p class="header">סוג מחשב</p>
         <div class="item">
-            <p>סוג מחשב</p>
-            <select>
+            <select id="systemHead">
                 <option value="1" selected>AC</option>
                 <option value="2">DC</option>
             </select>
         </div>
-        <p>צנרת</p>
+        <p class="header">צנרת</p>
         <p>צינור ראשי</p>
-        <div class="item">
-            <div class="pipe-item">
-                <!-- <button class="icon-btn" style="font-size:24px"><i class="fa fa-plus"></i></button> -->
-                <!-- <button class="icon-btn"><i class="fa fa-plus"></i></button> -->
-                <input type="number" name="Name" placeholder="סוג" />
-                <input type="number" name="Name" placeholder="דרג" />
-                <input type="number" name="Name" placeholder="כמות" />
-            </div>
+        <div class="three-item">
+            <!-- <button class="icon-btn" style="font-size:24px"><i class="fa fa-plus"></i></button> -->
+            <!-- <button class="icon-btn"><i class="fa fa-plus"></i></button> -->
+            <input type="number" name="Name" placeholder="סוג" />
+            <input type="number" name="Name" placeholder="דרג" />
+            <input type="number" name="Name" placeholder="כמות" />
         </div>
         <p>צינור לפאנל</p>
-        <div class="item">
-            <div class="item">
-                <div class="pipe-item">
-                    <input type="number" name="Name" placeholder="סוג" />
-                    <input type="number" name="Name" placeholder="דרג" />
-                    <input type="number" name="Name" placeholder="כמות" />
-                </div>
-            </div>
+        <div class="three-item">
+            <input type="number" name="Name" placeholder="סוג" />
+            <input type="number" name="Name" placeholder="דרג" />
+            <input type="number" name="Name" placeholder="כמות" />
         </div>
-        <p>מחברים</p>
+        <p class="header">מחברים</p>
+        <div class="three-item">
+          <div>
+            <select style="width:250px">
+              <option value="" selected>צורה</option>
+              <option value="1">T</option>
+              <option value="2">זווית</option>
+              <option value="3">ישר</option>
+            </select>
+          </div>
+          <div>
+            <select style="width:250px">
+              <option value="" selected>סוגי חיבורים</option>
+              <option value="1">צינור לצינור</option>
+              <option value="2">צינור לברז</option>
+            </select>
+          </div>
+          <input type="number" name="Name" placeholder="כמות" />
+        </div>
+        <p class="header">מתזים</p>
         <div class="item">
-            
+          <div class="question" >
+            <input type="radio" value="none" id="radio_3" name="driving"/>
+            <label for="radio_1" class="radio"><span>חלק</span></label>
+            <input type="radio" value="none" id="radio_4" name="driving" />
+            <label for="radio_2" class="radio"><span>שלם</span></label>
+          </div>
+          <input type="number" name="Name" placeholder="כמות" style="width:200px"/>
+        </div>
+        <div class="item">
+          <h3> סך הכל מחיר:</h3>
+          <p id="finalAmount">0</p>
+          <p id="inPrice">כלול במחיר: </p>
+        </div>
+        <div class="btn-block">
+          <button type="button">stuff</button>
         </div>
 
 
 
-
-        <div class="question">
+        <!-- <div class="question">
           <p>Do you study?</p>
           <div class="question-answer">
             <input type="radio" value="none" id="radio_3" name="study"/>
@@ -182,10 +223,10 @@
         <div class="item">
           <p>Age of Children</p>
           <input type="text" name="name"/>
-        </div>
-        <div class="btn-block">
-          <button type="submit" href="/">Apply</button>
-        </div>
+        </div> -->
+        <!-- <div class="btn-block">
+          <button type="submit" href="/">חשב</button>
+        </div> -->
       </form>
     </div>
   </body>

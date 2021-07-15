@@ -34,8 +34,8 @@ html, body {
     }
     .banner {
     position: relative;
-    height: 210px;
-    background-image: url("/uploads/media/default/0001/01/a3df023f124a8bec3b213347404fe0a7318161de.jpeg");  
+    height: 300px;
+    background-image: url("https://physicsworld.com/wp-content/uploads/2021/04/PWApr21Stevenson-solar-farm-530203401-iStock_Noctiluxx.jpg");  
     background-size: cover;
     display: flex;
     justify-content: center;
@@ -153,36 +153,44 @@ html, body {
     cursor: pointer;
     }
     button {
-    /* width: 150px; */
-    /* padding: 10px; */
-    /* border: none; */
-    /* border-radius: 5px;  */
+    width: 150px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px; 
     background: #8ebf42;
     font-size: 16px;
     color: #fff;
-    /* cursor: pointer; */
+    cursor: pointer;
     }
     button:hover {
     background: #82b534;
     }
     @media (min-width: 568px) {
-    .name-item, .city-item, .pipe-item{
+    .name-item, .city-item, .pipe-item, .two-item{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     }
-    .name-item input, .city-item input{
+    .name-item input, .city-item input, .two-item{
     width: calc(50% - 20px);
     }
     .city-item select {
     width: calc(50% - 8px);
     }
     .pipe-item input{ 
-        /* display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between; */
     width: calc(33% - 20px);
     } 
+    .two-item input{
+    width: calc(50% - 0px);
+    }
+    .three-item {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    }
+    .three-item input{
+    width: calc(30% - 20px);
+    }
     .icon-btn {
         background-color: DodgerBlue;
         border: none;
@@ -191,9 +199,22 @@ html, body {
         font-size: 16px;
         cursor: pointer;
     }
+    .date{
+        position: relative;
+        margin: 10px 0;
+    }
+    .header{
+        font-size: 20px;
+    }
+    .amount-item{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        width: 120px;
+    }
       
     /* Darker background on mouse-over */
     .btn:hover {
-    background-color: RoyalBlue;
+        background-color: RoyalBlue;
     }
 }
