@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Solar Wash</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+    <script type="text/javascript" src="prices.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  </head>
+  <meta charset="utf-8">
+  <body dir="rtl">
+      <div class="testbox">
+        <div class="amount">
+          <div class="finalAmount">
+            <h3 > סה"כ מחיר:</h3>
+            <p style="height: 20px; padding-bottom: 0px;" id="finalAmount">0</p>
+          </div>
+          <div class="panelAmount">
+            <h3> מחיר לפאנל:</h3>
+            <p id="panelAmount">0</p>
+          </div>
+        </div>
+
+        <form action="/">
+          <div class="banner">
+            <h1>כתב כמויות SOLAR WASH</h1>
+          </div>
+
+          <div style="background-color:rgb(255, 240, 252);">
+            <h3 class="header"> פרטי הלקוח</h3>
+            <div class="name-item">
+              <div class="item">
+                <label for="name">שם הלקוח</label>
+                <input type="text" name="name"/>
+              </div>
+              <div class="item">
+                <label for="name">כתובת</label>
+                <input type="text" name="address"/>
+              </div>
+              <div class="item">
+                <label for="name">תאריך חתימת חוזה</label>
+                <input type="date" name="date"/>
+                <i class="fas fa-calendar-alt" style="position: absolute;"></i>
+              </div>
+            </div>
+            
+          </div>
+
+          <h3 class="header"> פרטי מערכת</h3>
+          
+          <div style="background-color:rgb(246, 240, 255); margin-bottom: 10px;">
+            <p class="header">סוג מערכת</p>
+            <div class="question" id= "waterTreat">
+              <div class="question-answer">
+                <input type="radio" value="none" id="radio_1" name="driving"/>
+                <label for="radio_1" class="radio"><span>ביתית</span></label>
+                <input type="radio" value="none" id="radio_2" name="driving" />
+                <label for="radio_2" class="radio"><span>מסחרית</span></label>
+              </div>
+            </div>
+          </div>
+          
+          <div style="background-color:rgb(223, 222, 240);">
+            <p class="header">פאנלים</p>
+            <div class="name-item">
+              <div class="item">
+                <label for="name">מספר פאנלים</label>
+                <input type="number" id="panelsNumber"/>
+              </div>
+              <div class="item">
+                <label for="name">מספר שורות פאנלים</label>
+                <input type="number" id="linesNumber"/>
+              </div>
+              <div class="item">
+                <label for="name">מספר פאנלים ממוצע בשורה</label>
+                <p type="number" id="panelsNumberInLine"> 0 </p>
+              </div>
+            </div>
+          </div>
+
+          <div style="background-color:rgb(234, 247, 243); margin-bottom: 10px;">
+            <p class="header">טכנולוגיית טיפול במים</p>
+            <div class="question" id= "waterTreat">
+              <div class="question-answer">
+                <button class="btn" type="button" name="btn-plus"><i class="fa fa-plus"></i></button>
+                <input type="radio" value="none" id="radio_3" name="waterTreat"/>
+                <label for="radio_3" class="radio"><span>מרכך</span></label>
+                <input type="radio" value="none" id="radio_4" name="waterTreat" />
+                <label for="radio_4" class="radio"><span>סיליפוס</span></label>
+                <input type="number" class="price" placeholder="מחיר ליחידה" />
+                <small>* הזן מחיר כולל מע"מ</small>
+              </div>
+            </div>
+          </div>
+
+          <div style="background-color:mintcream;">
+            <p class="header">ברזים</p>
+            <div class="name-item">
+                <button class="btn" type="button" name="btn-plus"><i class="fa fa-plus"></i></button>
+              <div class="item">
+                <label for="name">סוג</label>
+                <select>
+                  <option value="" selected></option>
+                  <option value="1">AC</option>
+                  <option value="2">DC</option>
+                  <option value="3">ידני</option>
+                </select>
+              </div>
+              <div class="item">
+                <label for="name">גודל</label>
+                <select>
+                  <option value="" selected></option>
+                  <option value="1">1/4</option>
+                  <option value="2">1/3</option>
+                  <option value="3">1/2</option>
+                  <option value="4">1</option>
+                  <option value="5">2</option>
+                </select>
+              </div>
+              <div class="item">
+                <label for="name">כמות</label>
+                <input type="number" id="faucetsNumber" class="quantity"/>
+              </div>
+              <div class="item">
+                <label for="name">מחיר ליחידה</label>
+                <input type="number"class="quantity"/>
+                <small>* הזן מחיר כולל מע"מ</small>
+              </div>
+            </div>
+          </div>
+
+          <div style="background-color:honeydew;">
+            <p class="header">מחשב</p>
+            <div class="name-item">
+              <button class="btn" type="button" name="btn-plus"><i class="fa fa-plus"></i></button>
+              <div class="item">
+                <label for="name">סוג</label>
+                <select id="systemHead">
+                  <option value="1" selected>AC</option>
+                  <option value="2">DC</option>
+                </select>
+              </div>
+              <div class="item">
+                <label for="name">מחיר ליחידה</label>
+                <input type="number" class="price"/>
+                <small>* הזן מחיר כולל מע"מ</small>
+              </div>
+            </div>
+          </div>
+
+          <div style="background-color:rgba(250, 250, 228, 0.932)">
+            <p class="header">צנרת</p>
+            <p>צינור ראשי</p>
+            <div class="name-item">
+              <button class="btn" type="button" name="btn-plus"><i class="fa fa-plus"></i></button>
+              <div class="item">
+                <label for="name">קוטר</label>
+                <select>
+                  <option value="" selected></option>
+                  <option value="1">16</option>
+                  <option value="2">20</option>
+                  <option value="3">25</option>
+                  <option value="3">32</option>
+                  <option value="3">40</option>
+                  <option value="3">50</option>
+                </select>
+              </div>
+              <div class="item">
+                <label for="name">דרג</label>
+                <select>
+                  <option value="" selected></option>
+                  <option value="1">4</option>
+                  <option value="2">6</option>
+                  <option value="3">10</option>
+                </select>
+              </div>
+              <div class="item">
+                <label for="name">כמות</label>
+                <input type="number" class="quantity"/>
+              </div>
+              <div class="item">
+                <label for="name">מחיר ליחידה</label>
+                <input type="number" class="price"/>
+                <small>* הזן מחיר כולל מע"מ</small>
+              </div>
+            </div>
+            <p>צינור לפאנל</p>
+            <div class="name-item">
+              <button class="btn" type="button" name="btn-plus"><i class="fa fa-plus"></i></button>
+              <div class="item">
+                <label for="name">קוטר</label>
+                <select>
+                  <option value="" selected></option>
+                  <option value="1">16</option>
+                  <option value="2">20</option>
+                  <option value="3">25</option>
+                  <option value="3">32</option>
+                  <option value="3">40</option>
+                  <option value="3">50</option>
+                </select>
+              </div>
+              <div class="item">
+                <label for="name">דרג</label>
+                <select>
+                  <option value="" selected></option>
+                  <option value="1">4</option>
+                  <option value="2">6</option>
+                  <option value="3">10</option>
+                </select>
+              </div>
+              <div class="item">
+                <label for="name">כמות</label>
+                <input type="number" class="quantity" />
+              </div>
+              <div class="item">
+                <label for="name">מחיר ליחידה</label>
+                <input type="number" class="price"/>
+                <small>* הזן מחיר כולל מע"מ</small>
+              </div>
+            </div>
+          </div>
+
+          <div style="background-color:floralwhite;">
+            <p class="header">מחברים</p>
+            <p>מחבר רגיל</p>
+            <div class="name-item">
+              <button class="btn" type="button" name="btn-plus"><i class="fa fa-plus"></i></button>
+              <div class="item">
+                <label>צורה</label>
+                <select id="connectsShape">
+                  <option value="0" selected></option>
+                  <option value="1">ישר</option>
+                  <option value="2">זווית</option>
+                  <option value="3">T</option>
+                </select>
+              </div>
+              <div class="item">
+                <label for="name">כמות</label>
+                <input type="number" class="quantity"/>
+              </div>
+            </div>
+            <p>מחבר סוף</p>
+            <div class="name-item">
+              <button class="btn" type="button" name="btn-plus"><i class="fa fa-plus"></i></button>
+              <div class="item">
+                <label>קוטר\סוג</label>
+                <select>
+                  <option value="" selected></option>
+                  <option value="1">שמיניה</option>
+                  <option value="1">16</option>
+                  <option value="2">20</option>
+                  <option value="3">25</option>
+                  <option value="3">32</option>
+                  <option value="3">40</option>
+                  <option value="3">50</option>
+                </select>
+              </div>
+              <div class="item">
+                <label for="name">כמות</label>
+                <input type="number" class="quantity"/>
+              </div>
+              <div class="item">
+                <label for="name">מחיר ליחידה</label>
+                <input type="number" class="price"/>
+                <small>* הזן מחיר כולל מע"מ</small>
+              </div>
+            </div>
+
+          <div style="background-color:antiquewhite;">
+            <p class="header">מתזים</p>
+            <div class="name-item">
+              <button class="btn" type="button" name="btn-plus"><i class="fa fa-plus"></i></button>
+              <div class="item question">
+                <input type="radio" value="none" id="radio_5" name="driving"/>
+                <label class="radio"><span>חלק</span></label>
+              </div>
+              <div class="item question">
+                <input type="radio" value="none" id="radio_6" name="driving" />
+                <label class="radio"><span>שלם</span></label>
+              </div>
+              <div class="item">
+                <label>כמות</label>
+                <input type="number" id="sprayersNumber" class="quantity"/>
+              </div>
+              <div class="item">
+                <label>יחס פאנל מתז</label>
+                <input type="number" id="SprayPanelRatio"/>
+              </div>
+              <div class="item">
+                <label>מחיר ליחידה</label>
+                <input type="number" id="sprayersNumber" class="quantity"/>
+                <small>* הזן מחיר כולל מע"מ</small>
+              </div>
+            </div>
+          </div>
+
+          <div style="background-color:wheat;">
+            <p class="header">מוצרים נוספים</p>
+            <div class="name-item">
+              <button class="btn" type="button" name="btn-plus"><i class="fa fa-plus"></i></button>
+              <div class="item">
+                <label for="name">שם המוצר</label>
+                <input type="text" id="sprayersNumber" class="quantity"/>
+              </div>
+              <div class="item">
+                <label for="name">כמות</label>
+                <input type="number" id="sprayersNumber" class="quantity"/>
+              </div>
+              <div class="item">
+                <label for="name">מחיר ליחידה</label>
+                <input type="number" id="sprayersNumber" class="quantity"/>
+                <small>* הזן מחיר כולל מע"מ</small>
+              </div>
+            </div>
+          </div>
+          <div class="btn-block">
+            <button type="button">חשב</button>
+          </div>
+      </form>
+    </div>
+  </body>
+</html>
