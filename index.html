@@ -34,16 +34,16 @@
             <h3 class="header"> פרטי הלקוח</h3>
             <div class="name-item">
               <div class="item">
-                <label for="name">שם הלקוח</label>
-                <input type="text" name="name"/>
+                <label>שם הלקוח</label>
+                <input type="text" name="clientName"/>
               </div>
               <div class="item">
-                <label for="name">כתובת</label>
-                <input type="text" name="address"/>
+                <label>כתובת</label>
+                <input type="text" name="clientAddress"/>
               </div>
               <div class="item">
-                <label for="name">תאריך חתימת חוזה</label>
-                <input type="date" name="date"/>
+                <label>תאריך חתימת חוזה</label>
+                <input type="date" name="Date"/>
                 <i class="fas fa-calendar-alt" style="position: absolute;"></i>
               </div>
             </div>
@@ -54,11 +54,11 @@
           
           <div style="background-color:rgb(246, 240, 255); margin-bottom: 10px;">
             <p class="header">סוג מערכת</p>
-            <div class="question" id= "waterTreat">
+            <div class="question" id= "systemTypes">
               <div class="question-answer">
-                <input type="radio" value="none" id="radio_1" name="driving"/>
+                <input type="radio" name="sysType" value="none" id="radio_1" />
                 <label for="radio_1" class="radio"><span>ביתית</span></label>
-                <input type="radio" value="none" id="radio_2" name="driving" />
+                <input type="radio" name="sysType" value="none" id="radio_2" />
                 <label for="radio_2" class="radio"><span>מסחרית</span></label>
               </div>
             </div>
@@ -68,15 +68,15 @@
             <p class="header">פאנלים</p>
             <div class="name-item">
               <div class="item">
-                <label for="name">מספר פאנלים</label>
+                <label>מספר פאנלים</label>
                 <input type="number" id="panelsNumber"/>
               </div>
               <div class="item">
-                <label for="name">מספר שורות פאנלים</label>
+                <label>מספר שורות פאנלים</label>
                 <input type="number" id="linesNumber"/>
               </div>
               <div class="item">
-                <label for="name">מספר פאנלים ממוצע בשורה</label>
+                <label>מספר פאנלים ממוצע בשורה</label>
                 <p type="number" id="panelsNumberInLine"> 0 </p>
               </div>
             </div>
@@ -84,25 +84,32 @@
 
           <div style="background-color:rgb(234, 247, 243); margin-bottom: 10px;">
             <p class="header">טכנולוגיית טיפול במים</p>
-            <div class="question" id= "waterTreat">
-              <div class="question-answer">
-                <button class="btn" type="button" name="btn-plus"><i class="fa fa-plus"></i></button>
-                <input type="radio" value="none" id="radio_3" name="waterTreat"/>
-                <label for="radio_3" class="radio"><span>מרכך</span></label>
-                <input type="radio" value="none" id="radio_4" name="waterTreat" />
-                <label for="radio_4" class="radio"><span>סיליפוס</span></label>
-                <input type="number" class="price" placeholder="מחיר ליחידה" />
-                <small>* הזן מחיר כולל מע"מ</small>
+            <div class="question">
+              <div class="name-item question-answer waterTreat">
+                <button class="btn" type="button" name="btn waterTreat plus"><i class="fa fa-plus"></i></button>
+                <div class="item question">
+                  <input type="radio" name="waterTreat0" value="conditioner" id="waterTreat00" checked/>
+                  <label for="waterTreat00" class="radio"><span>מרכך</span></label>
+                </div>
+                <div class="item question">
+                  <input type="radio" name="waterTreat0" value="silipus" id="waterTreat01"/>
+                  <label for="waterTreat01" class="radio"><span>סיליפוס</span></label>
+                </div>
+                <div class="item">
+                  <label>מחיר ליחידה</label>
+                  <input type="number" class="price"/>
+                  <small>* הזן מחיר כולל מע"מ</small>
+                </div>
               </div>
             </div>
           </div>
 
           <div style="background-color:mintcream;">
             <p class="header">ברזים</p>
-            <div class="name-item">
+            <div class="name-item faucets">
                 <button class="btn" type="button" name="btn-plus"><i class="fa fa-plus"></i></button>
               <div class="item">
-                <label for="name">סוג</label>
+                <label>סוג</label>
                 <select>
                   <option value="" selected></option>
                   <option value="1">AC</option>
@@ -111,7 +118,7 @@
                 </select>
               </div>
               <div class="item">
-                <label for="name">גודל</label>
+                <label>גודל</label>
                 <select>
                   <option value="" selected></option>
                   <option value="1">1/4</option>
@@ -122,11 +129,11 @@
                 </select>
               </div>
               <div class="item">
-                <label for="name">כמות</label>
+                <label>כמות</label>
                 <input type="number" id="faucetsNumber" class="quantity"/>
               </div>
               <div class="item">
-                <label for="name">מחיר ליחידה</label>
+                <label>מחיר ליחידה</label>
                 <input type="number"class="quantity"/>
                 <small>* הזן מחיר כולל מע"מ</small>
               </div>
@@ -135,17 +142,17 @@
 
           <div style="background-color:honeydew;">
             <p class="header">מחשב</p>
-            <div class="name-item">
+            <div class="name-item systemHead">
               <button class="btn" type="button" name="btn-plus"><i class="fa fa-plus"></i></button>
               <div class="item">
-                <label for="name">סוג</label>
-                <select id="systemHead">
+                <label>סוג</label>
+                <select>
                   <option value="1" selected>AC</option>
                   <option value="2">DC</option>
                 </select>
               </div>
               <div class="item">
-                <label for="name">מחיר ליחידה</label>
+                <label>מחיר ליחידה</label>
                 <input type="number" class="price"/>
                 <small>* הזן מחיר כולל מע"מ</small>
               </div>
@@ -155,10 +162,10 @@
           <div style="background-color:rgba(250, 250, 228, 0.932)">
             <p class="header">צנרת</p>
             <p>צינור ראשי</p>
-            <div class="name-item">
+            <div class="name-item main-pipe">
               <button class="btn" type="button" name="btn-plus"><i class="fa fa-plus"></i></button>
               <div class="item">
-                <label for="name">קוטר</label>
+                <label>קוטר</label>
                 <select>
                   <option value="" selected></option>
                   <option value="1">16</option>
@@ -170,7 +177,7 @@
                 </select>
               </div>
               <div class="item">
-                <label for="name">דרג</label>
+                <label>דרג</label>
                 <select>
                   <option value="" selected></option>
                   <option value="1">4</option>
@@ -179,20 +186,20 @@
                 </select>
               </div>
               <div class="item">
-                <label for="name">כמות</label>
+                <label>כמות</label>
                 <input type="number" class="quantity"/>
               </div>
               <div class="item">
-                <label for="name">מחיר ליחידה</label>
+                <label>מחיר ליחידה</label>
                 <input type="number" class="price"/>
                 <small>* הזן מחיר כולל מע"מ</small>
               </div>
             </div>
             <p>צינור לפאנל</p>
-            <div class="name-item">
+            <div class="name-item regular-pipe">
               <button class="btn" type="button" name="btn-plus"><i class="fa fa-plus"></i></button>
               <div class="item">
-                <label for="name">קוטר</label>
+                <label>קוטר</label>
                 <select>
                   <option value="" selected></option>
                   <option value="1">16</option>
@@ -204,7 +211,7 @@
                 </select>
               </div>
               <div class="item">
-                <label for="name">דרג</label>
+                <label>דרג</label>
                 <select>
                   <option value="" selected></option>
                   <option value="1">4</option>
@@ -213,11 +220,11 @@
                 </select>
               </div>
               <div class="item">
-                <label for="name">כמות</label>
+                <label>כמות</label>
                 <input type="number" class="quantity" />
               </div>
               <div class="item">
-                <label for="name">מחיר ליחידה</label>
+                <label>מחיר ליחידה</label>
                 <input type="number" class="price"/>
                 <small>* הזן מחיר כולל מע"מ</small>
               </div>
@@ -227,7 +234,7 @@
           <div style="background-color:floralwhite;">
             <p class="header">מחברים</p>
             <p>מחבר רגיל</p>
-            <div class="name-item">
+            <div class="name-item regular-connect">
               <button class="btn" type="button" name="btn-plus"><i class="fa fa-plus"></i></button>
               <div class="item">
                 <label>צורה</label>
@@ -239,12 +246,12 @@
                 </select>
               </div>
               <div class="item">
-                <label for="name">כמות</label>
+                <label>כמות</label>
                 <input type="number" class="quantity"/>
               </div>
             </div>
             <p>מחבר סוף</p>
-            <div class="name-item">
+            <div class="name-item end-connect">
               <button class="btn" type="button" name="btn-plus"><i class="fa fa-plus"></i></button>
               <div class="item">
                 <label>קוטר\סוג</label>
@@ -260,11 +267,11 @@
                 </select>
               </div>
               <div class="item">
-                <label for="name">כמות</label>
+                <label>כמות</label>
                 <input type="number" class="quantity"/>
               </div>
               <div class="item">
-                <label for="name">מחיר ליחידה</label>
+                <label>מחיר ליחידה</label>
                 <input type="number" class="price"/>
                 <small>* הזן מחיר כולל מע"מ</small>
               </div>
@@ -272,15 +279,15 @@
 
           <div style="background-color:antiquewhite;">
             <p class="header">מתזים</p>
-            <div class="name-item">
+            <div class="name-item sprayer">
               <button class="btn" type="button" name="btn-plus"><i class="fa fa-plus"></i></button>
               <div class="item question">
                 <input type="radio" value="none" id="radio_5" name="driving"/>
-                <label class="radio"><span>חלק</span></label>
+                <label for="radio_5" class="radio"><span>חלק</span></label>
               </div>
               <div class="item question">
                 <input type="radio" value="none" id="radio_6" name="driving" />
-                <label class="radio"><span>שלם</span></label>
+                <label for="radio_6" class="radio"><span>שלם</span></label>
               </div>
               <div class="item">
                 <label>כמות</label>
@@ -303,15 +310,15 @@
             <div class="name-item">
               <button class="btn" type="button" name="btn-plus"><i class="fa fa-plus"></i></button>
               <div class="item">
-                <label for="name">שם המוצר</label>
+                <label>שם המוצר</label>
                 <input type="text" id="sprayersNumber" class="quantity"/>
               </div>
               <div class="item">
-                <label for="name">כמות</label>
+                <label>כמות</label>
                 <input type="number" id="sprayersNumber" class="quantity"/>
               </div>
               <div class="item">
-                <label for="name">מחיר ליחידה</label>
+                <label>מחיר ליחידה</label>
                 <input type="number" id="sprayersNumber" class="quantity"/>
                 <small>* הזן מחיר כולל מע"מ</small>
               </div>

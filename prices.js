@@ -3,7 +3,7 @@ let dcPrice = [0, 600, 1500, 1600, 1700, 1800, 1900, 2250, 2350]
 
 let faucetPrice = 200
 
-let silipus = 5
+let silipus = 400
 let conditioner = 7200
 
 diamOfPipe = [16, 20, 25, 32, 40, 50]
