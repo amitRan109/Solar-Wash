@@ -1,7 +1,4 @@
-let acPrice = [0, 800, 1500, 1600, 1700, 1800, 1900, 2250, 2350]
-let dcPrice = [0, 600, 1500, 1600, 1700, 1800, 1900, 2250, 2350]
-
-let faucetPrice = 200
+let faucetsPrice = [200, 1500, 1600, 1700, 1800, 1900, 2250, 2350]
 
 let silipus = 400
 let conditioner = 7200
@@ -28,3 +25,5 @@ sizeOfFaucetForSelection = [
     {val : 4, text: "1"},
     {val : 5, text: "2"},
 ]
+
+// var workbook = XLSX.read('https://docs.google.com/spreadsheets/d/18rfGolDFo9qMDF0NS9pzESEcacVvjwQoPN_Khsp2AMk/edit#gid=0', {type: 'binary'});

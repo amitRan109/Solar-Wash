@@ -1,18 +1,19 @@
 
 $(document).ready(function(){
-    waterTreat = conditioner // חומר טיפול במים: מרכך או סיליפוס
+    
+    waterTreat = 0 // חומר טיפול במים: מרכך או סיליפוס
     faucets = 0 // ברזים
     systemHead = 0 // מחשב
     headPipe = 0 //צינור ראשי
     pipes = 0 //צינורות
     connects = 0 //מחברים
     sprayers = 0 //מתזים
-    counterForId = 0
-    countForName = 0
 
     waterClass = new WaterTreat();
+    faucetsClass = new Faucets();
 
-    calculate()
+    calculate();
+
     $("#systemTypes").change(function(){ // סוג מערכת
 
     });
@@ -26,11 +27,11 @@ $(document).ready(function(){
         var num = panelsNumber;
         if($("#linesNumber").val() != '') num = num / parseInt($("#linesNumber").val(), 10);
         $("#panelsNumberInLine").text(Math.round(num));
-        // update num of Faucets
-        var amountOfFaucets = Math.floor(panelsNumber / 50);
-        if (parseInt($("#panelsNumber").val(),10) % 50 > 0) amountOfFaucets++;
-        $("#faucetsNumber").val(amountOfFaucets)
-        faucets = $("#faucetsNumber").val() * faucetPrice
+        // // update num of Faucets
+        // var amountOfFaucets = Math.floor(panelsNumber / 50);
+        // if (parseInt($("#panelsNumber").val(),10) % 50 > 0) amountOfFaucets++;
+        // $("#faucetsNumber").val(amountOfFaucets)
+        // faucets = $("#faucetsNumber").val() * faucetPrice
         // update num of sprayers
         ratio = 1.5
         if($("#SprayPanelRatio").val() != '') ratio = $("#SprayPanelRatio").val()
@@ -44,27 +45,27 @@ $(document).ready(function(){
         $("#panelsNumberInLine").text(Math.round(panelsNumber));
     });
 
-    $(document).on('change', '.waterTreat', function(){ // טכנולוגיית טיפול במים
-        // $(this).children().each(function () {alert($(this).attr('class'))})
+    $(document).on('change', '.waterTreatRadio', function(){ // טכנולוגיית טיפול במים
+        index = parseInt($(this).children('.item').children('input').prop('name').substr(10), 10);
         if($(this).children(".item").children('input[id$="0"]').is(':checked')) {
-            waterTreat += conditioner
-            waterTreat -= silipus
-            calculate()
+            waterClass.changePrice(index, conditioner, 'conditioner');
+            calculate();
         }
         
         if($(this).children(".item").children('input[id$="1"]').is(':checked')) {
-            waterTreat += silipus
-            waterTreat -= conditioner
-            calculate()
+            waterClass.changePrice(index, silipus, 'silipus');
+            calculate();
         }
 
-        // else
-        //     waterClass.changePrice(parseInt($(this).children(".item").children('.price').val(),10))
-        
-        
+    });
+    $(document).on('change', '.waterTreatPrice', function(){ // שינוי מחיר טכנ' טיפול במים
+        index = parseInt($(this).parent().children('.waterTreatRadio').children('.item').children('input').prop('name').substr(10), 10);
+        if($(this).children('input').val() == '') waterClass.changeToDefaultPrice(index)
+        else waterClass.changePrice(index, parseInt($(this).children('input').val(), 10));
+        calculate();
     });
 
-    $(document).on('click', 'button[name^="btn waterTreat"]', function() {
+    $(document).on('click', 'button[name^="btn waterTreat"]', function() { // הוספת ומחיקת טכנ' טיפול במים
         if($(this).attr('name') == 'btn waterTreat plus'){ 
             // create new item
             var parent = $(this).parent();
@@ -74,7 +75,7 @@ $(document).ready(function(){
             newBtn.attr('name', 'btn waterTreat close').attr('style', 'background:crimson');
             newBtn.children().attr('class', 'fa fa-close')
             
-            $(newItem).children().each(function(){
+            $(newItem).children('.waterTreatRadio').children().each(function(){
                 if($(this).attr('class') === 'item question'){
                     $(this).children('input').attr('name', waterClass.addName());
                     newId = waterClass.addId();
@@ -86,33 +87,67 @@ $(document).ready(function(){
                 }
             })
 
-            // waterTreat += conditioner;
-            // calculate();
-            
             newItem.insertAfter(parent);
-            //
             waterClass.addVar('conditioner', conditioner);
+            calculate();
         }
         else { // btn-close waterTreat
-            index = parseInt($(this).parent().children('.item').children('input').prop('name').substr(10), 10);
-            alert(index)
+            index = parseInt($(this).parent().children('.waterTreatRadio').children('.item').children('input').prop('name').substr(10), 10);
             $(this).parent().remove(); 
-            waterClass.remove(index)
+            waterClass.remove(index);
+            calculate();
         }
     })
 
-    $('input[type="radio"]').on('deselect', function(){
-        alert("deselect");
+    $(document).on('change', '.faucets', function(){ // ברזים וארונות
+        index = Number($(this).attr('id').substr(7))
+        faucetsClass.changeType(index, $(this).children('#type').val());
+        faucetsClass.changeSize(index, !$(this).children('#size').val() ? 0 : Number(size));
+        faucetsClass.changeAmount(index, $(this).children('#amount').val());
+        if($(this).children('#price').val()) faucetsClass.changePrice(index, $(this).children('#price').val());
     });
 
-    $(document).on('change', '.faucets', function(){ // ברזים
+    $(document).on('click', 'button[name^="btn faucets"]', function() { // הוספת ומחיקת ברזים
+        if($(this).attr('name') == 'btn faucets plus'){ 
+            // create new item
+            var parent = $(this).parent();
+            var newItem = $(parent).clone();
+            // change the btn to remove  btn
+            var newBtn = newItem.children('.btn');
+            newBtn.attr('name', 'btn faucets close').attr('style', 'background:crimson');
+            newBtn.children().attr('class', 'fa fa-close')
+            // change id of class faucets
+            $(this).attr('id', faucetsClass.addId())
+            
+            // $(newItem).children('.waterTreatRadio').children().each(function(){
+            //     if($(this).attr('class') === 'item question'){
+            //         $(this).children('input').attr('name', waterClass.addName());
+            //         newId = waterClass.addId();
+            //         $(this).children('input').attr('id', newId);
+            //         $(this).children('label').attr('for', newId);
+            //         $(this).children('input[value="conditioner"]').prop('checked', true); 
+            //         $(this).children('input[value="silipus"]').prop('checked', false);
+                    
+            //     }
+            // })
+
+            newItem.insertAfter(parent);
+            faucetsClass.addVar();
+            // calculate();
+        }
+        else { // btn faucets close
+            index = Number($(this).parent().attr('id').substr(7));
+            $(this).parent().remove(); 
+            faucetsClass.remove(index);
+            calculate();
+        }
     });
 
-    $("#faucetsNumber").change(function(){  // מספר ברזים
-        faucets = Number($("#faucetsNumber").val()) * faucetPrice
-        changeSystemHead()
-        // calculate()
-    });
+    // $("#faucetsNumber").change(function(){  // מספר ברזים
+    //     faucets = Number($("#faucetsNumber").val()) * faucetPrice
+    //     changeSystemHead()
+    //     // calculate()
+    // });
 
     $(document).on('change', '.systemHead', function(){ // מחשב
         changeSystemHead()
@@ -135,7 +170,7 @@ $(document).ready(function(){
         when the shape of the connect change. 
         open select options to select the type of all the opens מאפשר לבחור מאפיין לכל פיצול של המחבר
         */
-       $(".newSelection").remove()
+       $(".newSelection").remove();
        var shape = parseInt($("#connectsShape").val(), 10)
        num = shape == 1 ? 2 : shape;
        for( i=0; i < num; i++){
@@ -266,34 +301,8 @@ $(document).ready(function(){
         $("#finalAmount").text(waterTreat + faucets + systemHead + headPipe + pipes + connects + sprayers)
     }
     
-    class WaterTreat {
-        constructor(){
-            this.vars = []; // array of all the waterTreats - [type][price]
-            this.addVar('conditioner', conditioner)
-            this.counter = 1;
-            this.counterForId = 0;
-            // this.countForName = 0;
-        }
-        addVar(type, price){
-            this.vars[this.counter] = new Array(2);
-            this.vars[this.counter++] = [type, price];
-    
-            waterTreat += price
-            calculate();
-        }
-        addName(){
-            return "waterTreat" + this.counter;
-        }
-        addId(){
-            return "waterTreat" + this.counter + ((this.counterForId++) % 2);
-            
-        }
-        remove(index){
-            waterTreat -= vars[index][1]; // the price
-            calculate();
-            array.splice(index, 1);
-        }
-        
+    function changeAmount(amount){
+        $("#finalAmount").text(amount);
     }
 
 });
