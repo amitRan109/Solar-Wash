@@ -92,7 +92,7 @@
                 <button class="btn" type="button" name="btn waterTreat plus"><i class="fa fa-plus"></i></button>
                 <div class="waterTreatRadio name-item">
                   <div class="item question">
-                    <input type="radio" name="waterTreat0" value="conditioner" id="waterTreat00" checked/>
+                    <input type="radio" name="waterTreat0" value="conditioner" id="waterTreat00"/>
                     <label for="waterTreat00" class="radio"><span>מרכך</span></label>
                   </div>
                   <div class="item question">
@@ -113,31 +113,31 @@
             <p class="header">ברזים / ארונות</p>
             <div class="name-item faucets" id="faucets0">
               <button class="btn" type="button" name="btn faucets plus"><i class="fa fa-plus"></i></button>
-              <div class="item type">
+              <div class="item faucetsType">
                 <label>סוג</label>
-                <select name="type" >
-                  <option value="" selected></option>
-                  <option value="1">AC</option>
-                  <option value="2">DC</option>
-                  <option value="3">ידני</option>
+                <select name="" >
+                  <option value="null" selected></option>
+                  <option value="AC">AC</option>
+                  <option value="DC">DC</option>
+                  <option value="manual">ידני</option>
                 </select>
               </div>
-              <div class="item">
+              <div class="item faucetsSize">
                 <label>גודל</label>
                 <select name="size">
-                  <option value="" selected></option>
-                  <option value="1">1/4</option>
-                  <option value="2">1/3</option>
-                  <option value="3">1/2</option>
-                  <option value="4">1</option>
-                  <option value="5">2</option>
+                  <option value="0" selected></option>
+                  <option value="1/4">1/4</option>
+                  <option value="1/3">1/3</option>
+                  <option value="1/2">1/2</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
                 </select>
               </div>
-              <div class="item">
+              <div class="item faucetsAmount">
                 <label>כמות</label>
                 <input type="number" id="faucetsNumber" name="amount" class="quantity"/>
               </div>
-              <div class="item" name="price">
+              <div class="item faucetsPrice" name="price">
                 <label>מחיר ליחידה</label>
                 <input type="number"class="quantity"/>
                 <small>* הזן מחיר כולל מע"מ</small>

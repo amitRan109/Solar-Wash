@@ -12,12 +12,12 @@ $(document).ready(function(){
     waterClass = new WaterTreat();
     faucetsClass = new Faucets();
 
-    calculate();
-
-    $("#systemTypes").change(function(){ // סוג מערכת
-
+    // calculate();
+    // --------------- סוג מערכת ---------------
+    $("#systemTypes").change(function(){ 
     });
     
+    // --------------- פאנלים ---------------
     $("#panelsNumber").change(function(){ // מספר פאנלים
         /*
         Update things when panels num changes
@@ -45,17 +45,25 @@ $(document).ready(function(){
         $("#panelsNumberInLine").text(Math.round(panelsNumber));
     });
 
+    // --------------- פאנלים ---------------
     $(document).on('change', '.waterTreatRadio', function(){ // טכנולוגיית טיפול במים
         index = parseInt($(this).children('.item').children('input').prop('name').substr(10), 10);
+        
         if($(this).children(".item").children('input[id$="0"]').is(':checked')) {
-            waterClass.changePrice(index, conditioner, 'conditioner');
-            calculate();
+            waterClass.changeType(index, 'conditioner')
+            // waterClass.changePrice(index, conditioner, 'conditioner');
+            // if($(this).parent().children('.waterTreatPrice') == '') changeToDefaultPrice(index);
+            // calculate();
         }
         
         if($(this).children(".item").children('input[id$="1"]').is(':checked')) {
-            waterClass.changePrice(index, silipus, 'silipus');
-            calculate();
+            waterClass.changeType(index, 'silipus')
+            // waterClass.changePrice(index, silipus, 'silipus');
+            // if($(this).parent().children('.waterTreatPrice') == '') changePrice(index, conditionerPrice)
+            // calculate();
         }
+        if($(this).parent().children('.waterTreatPrice').val() == '') waterClass.changeToDefaultPrice(index);
+        calculate();
 
     });
     $(document).on('change', '.waterTreatPrice', function(){ // שינוי מחיר טכנ' טיפול במים
@@ -81,14 +89,14 @@ $(document).ready(function(){
                     newId = waterClass.addId();
                     $(this).children('input').attr('id', newId);
                     $(this).children('label').attr('for', newId);
-                    $(this).children('input[value="conditioner"]').prop('checked', true); 
+                    $(this).children('input[value="conditioner"]').prop('checked', false); 
                     $(this).children('input[value="silipus"]').prop('checked', false);
                     
                 }
             })
 
             newItem.insertAfter(parent);
-            waterClass.addVar('conditioner', conditioner);
+            waterClass.addVar();
             calculate();
         }
         else { // btn-close waterTreat
@@ -99,12 +107,28 @@ $(document).ready(function(){
         }
     })
 
-    $(document).on('change', '.faucets', function(){ // ברזים וארונות
-        index = Number($(this).attr('id').substr(7))
-        faucetsClass.changeType(index, $(this).children('#type').val());
-        faucetsClass.changeSize(index, !$(this).children('#size').val() ? 0 : Number(size));
-        faucetsClass.changeAmount(index, $(this).children('#amount').val());
-        if($(this).children('#price').val()) faucetsClass.changePrice(index, $(this).children('#price').val());
+    // ---------------  ברזים וארונות  ---------------
+    $(document).on('change', '.faucetsType', function(){ // סוג ברז
+        // alert($(this).children('select').val())
+        index = Number($(this).parent().attr('id').substr(7));
+        faucetsClass.changeType(index, $(this).children('select').val());
+    });
+    $(document).on('change', '.faucetsSize', function(){ // גודל ברז
+        alert($(this).children('select').val())
+        index = Number($(this).parent().attr('id').substr(7));
+        faucetsClass.changeSize(index, Number($(this).children('select').val()));
+    });
+    $(document).on('change', '.faucetsAmount', function(){ // כמות ברזים
+        alert($(this).children('input').val())
+        index = Number($(this).parent().attr('id').substr(7));
+        faucetsClass.changeAmount(index, Number($(this).children('input').val()));
+        calculate();
+    });
+    $(document).on('change', '.faucetsPrice', function(){ // מחיר ברז
+        alert($(this).children('input').val())
+        index = Number($(this).parent().attr('id').substr(7));
+        faucetsClass.changePrice(index, Number($(this).children('input').val()));
+        calculate();
     });
 
     $(document).on('click', 'button[name^="btn faucets"]', function() { // הוספת ומחיקת ברזים
@@ -118,19 +142,6 @@ $(document).ready(function(){
             newBtn.children().attr('class', 'fa fa-close')
             // change id of class faucets
             $(this).attr('id', faucetsClass.addId())
-            
-            // $(newItem).children('.waterTreatRadio').children().each(function(){
-            //     if($(this).attr('class') === 'item question'){
-            //         $(this).children('input').attr('name', waterClass.addName());
-            //         newId = waterClass.addId();
-            //         $(this).children('input').attr('id', newId);
-            //         $(this).children('label').attr('for', newId);
-            //         $(this).children('input[value="conditioner"]').prop('checked', true); 
-            //         $(this).children('input[value="silipus"]').prop('checked', false);
-                    
-            //     }
-            // })
-
             newItem.insertAfter(parent);
             faucetsClass.addVar();
             // calculate();
@@ -149,16 +160,19 @@ $(document).ready(function(){
     //     // calculate()
     // });
 
+    // --------------- מחשב ---------------
     $(document).on('change', '.systemHead', function(){ // מחשב
         changeSystemHead()
     });
 
+    // --------------- צינורות ---------------
     $(document).on('change', '.main-pipe', function(){ // צינור ראשי
     });
 
     $(document).on('change', '.regular-pipe', function(){ // צינור לפאנל
     });
-
+    
+    // --------------- מחברים ---------------
     $(document).on('change', '.regular-connect', function(){ // מחבר רגיל 
     });
 
@@ -197,7 +211,6 @@ $(document).ready(function(){
     });
 
    
-
     $(document).on('change', '.newSelection', function() {
         /* 
         when new selection create during the run chnage.
@@ -208,7 +221,7 @@ $(document).ready(function(){
             var idNum = $(this).attr('id')[11];
             $("#diamORsizeSelect"+ idNum).remove(); // remove the current selection to create the new
             var value = []
-            if( $(this).val() == "1"){ // צינור
+            if( $(this).children('select').val() == "1"){ // צינור
                 value = diamOfPipeForSelection
                 value[0] = {val: 0, text: ''+ idNum}
                 var newItem = $('<div>').addClass("item");

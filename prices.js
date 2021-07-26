@@ -1,7 +1,7 @@
-let faucetsPrice = [200, 1500, 1600, 1700, 1800, 1900, 2250, 2350]
+let faucetsPrice = [0, 200, 1500, 1600, 1700, 1800, 1900, 2250, 2350]
 
-let silipus = 400
-let conditioner = 7200
+let silipusPrice = 400
+let conditionerPrice = 7200
 
 diamOfPipe = [16, 20, 25, 32, 40, 50]
 
